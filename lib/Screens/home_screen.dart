@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emailpswlogin/Model/user_model.dart';
+import 'package:emailpswlogin/Screens/login-screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -10,6 +14,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //To display the currentUser
+  /*User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
+
+  @override
+  void initState() {
+    
+    super.initState();
+    FirebaseFirestore.instance
+    .collection("users")
+    .doc(user!.uid)
+    .get()
+    .then((value) {
+      this.loggedInUser  = UserModel.fromMap(value.data());
+      setState(() {
+        
+      });
+    });
+  }*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +77,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
 
                     SizedBox(height: 15,),
-                    ActionChip(label: Text("Logout"), onPressed: () {},)
+                    ActionChip(label: Text("Logout"), onPressed: () {
+                      logOut(context);
+                    },)
             ],
           ),
         ),
       ),
     );
   }
+  //! LogOut Button
+  Future<void> logOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement((context), MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
 }
