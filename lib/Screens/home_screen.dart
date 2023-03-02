@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -25,10 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
               SizedBox(
                       height: 150,
-                      child: Image.asset(
-                        "/home/ubantu/emailpswlogin/assets/Foodlogo.png",
-                        fit: BoxFit.contain,
-                      ),
+                      // child: Image.asset(
+                      //   "/home/ubantu/emailpswlogin/assets/Foodlogo.png",
+                      //   fit: BoxFit.contain,
+                      // ),
+                      child: Lottie.network("https://assets9.lottiefiles.com/packages/lf20_snmohqxj/lottie_step2/data.json"),
                     ),
 
                     SizedBox(height: 10,),
